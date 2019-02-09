@@ -55,3 +55,21 @@ body {
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
+
+.btn{
+  background-color: #6D919E;
+}
+.btn:visited{
+  background-color: rgba(109,145,158,0.5);
+}
+.btn:hover {
+  background-color: rgba(109,145,158,0.9);
+}
+.btn:active{
+  background-color: rgba(109,145,158,0.8);
+}
+.btn:focus{
+  background-color: rgba(109,145,158,0.7);
+}
+
+.navbar-fixed { z-index: 9999; } /* consertou o problema do sidenav ficar desabilitado quando a  navbar está fixada */
