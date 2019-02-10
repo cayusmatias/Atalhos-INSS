@@ -1,0 +1,12 @@
+192 x 192  drawable-xxxhdpi-icon
+
+144 x 144  drawable-xxhdpi-icon
+
+96 x 96  drawable-xhdpi-icon
+
+72 x 72  drawable-hdpi-icon
+
+48 x 48  drawable-mdpi-icon
+
+36 x 36  drawable-ldpi-icon
+
