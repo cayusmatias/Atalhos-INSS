@@ -55,3 +55,76 @@ var app = {
 
   }); // end of document ready
 })(jQuery); // end of jQuery name space
+
+//função que chama a calculadora
+function mostraCalculadora(){
+  $('.sidenav').sidenav('close');
+  $('#atalhos').hide();
+  $('#divCalculadora').show();
+  limparData();
+}
+
+//função que chama a calculadora
+function mostraAtalhos(){
+  $('.sidenav').sidenav('close');
+  $('#atalhos').show();
+  $('#divCalculadora').hide();
+  limparData();
+}
+
+//chama datapicker
+$(document).ready(function(){
+    $('.datepicker').datepicker({
+    i18n: {
+      today: 'Hoje',
+      cancel: 'Limpar',
+      done: 'Ok',
+      nextMonth: 'Próximo mês',
+      previousMonth: 'Mês anterior',
+      weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+      weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+      weekdays: ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'],
+      monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+      months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+    },
+    format: 'dd/mm/yyyy',
+    yearRange: 60
+  });
+});
+
+function calcularIntervaloData(){
+  var data1 = $('#first_date').val();
+  var data1 = data1.split('/');
+  var data2 = $('#second_date').val();
+  var data2 = data2.split('/');
+  var dt1 = moment(data1[2]+'-'+data1[1]+'-'+data1[0]);
+  var dt2 = moment(data2[2]+'-'+data2[1]+'-'+data2[0]).add(1, 'd');
+  var diferenca = moment.preciseDiff(dt2, dt1, true);
+  if (diferenca.years > 1) {
+    var ano = diferenca.years + ' anos';
+  }else if (diferenca.years == 1) {
+    var ano = diferenca.years + ' ano';
+  }else {
+    var ano = ''
+  }
+  if (diferenca.months > 1) {
+    var mes = ' ' + diferenca.months + ' meses';
+  }else if (diferenca.months == 1) {
+    var mes = ' ' + diferenca.months + ' mês';
+  }else {
+    var mes = ''
+  }
+  if (diferenca.days > 1) {
+    var dia = ' ' + diferenca.days + ' dias';
+  }else if (diferenca.days == 1) {
+    var dia = ' ' + diferenca.days + ' dia';
+  }else {
+    var dia = ''
+  }
+  $( '#resultadoCalculo' ).text( ano + mes + dia );
+}
+
+function limparData(){
+  $('#form_data').trigger("reset");
+  $('#resultadoCalculo').text('');
+}

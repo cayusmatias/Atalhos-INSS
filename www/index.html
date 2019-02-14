@@ -46,18 +46,21 @@
 
 <body class="blue-grey lighten-5">
   <div class="navbar-fixed">
-  	<nav>
-      <div class="nav-wrapper">
+  	<nav role="navigation">
+      <div class="nav-wrapper container">
         <a id="logo-container" href="#" class="brand-logo">Atalhos</a>
         <ul class="right hide-on-med-and-down">
           <li><a href="#"><i class="fas fa-bars"></i></a></li>
         </ul>
 
         <ul id="nav-mobile" class="sidenav">
-          <li><a href="#">Atalhos INSS</a></li>
+          <li><a href="#" onclick="mostraAtalhos()">Atalhos INSS</a></li>
           <li><div class="divider"></div></li>
   				<li>
-            <a class="subheader"><i class="fas fa-code-branch"></i>Versão 1.0.2</a>
+            <a class="subheader"><i class="fas fa-code-branch"></i>Versão 1.0.4</a>
+          </li>
+          <li>
+            <a href='#' onclick="mostraCalculadora()"><i class="fas fa-calculator"></i>Calculadora de Tempo</a>
           </li>
           <li><a class="sidenav-close" href="#!"><i class="fas fa-times"></i>Fechar</a></li>
         </ul>
@@ -65,52 +68,79 @@
       </div>
     </nav>
   </div>
-  <div style="padding-top: 8px">
-		<div class="">
-			<div class="row">
-				<div class="col s6 m4 l4" style="padding-bottom:8px">
-					<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://suporte.dataprev.gov.br/', '_system' ,'location=yes'); return false;">SDM</a>
-				</div>
-				<div class="col s6 m4 l4" style="padding-bottom:8px">
-					<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://consultas.inss.gov.br/satcentral', '_system' ,'location=yes'); return false;">SAT Central</a>
-				</div>
-				<div class="col s6 m4 l4" style="padding-bottom:8px">
-					<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://tarefas.inss.gov.br/', '_system' ,'location=yes'); return false;">GET</a>
-				</div>
-				<div class="col s6 m4 l4" style="padding-bottom:8px">
-					<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://portalcnis.inss.gov.br', '_system' ,'location=yes'); return false;">CNIS</a>
-				</div>
-				<div class="col s6 m4 l4" style="padding-bottom:8px">
-					<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://geridinss.dataprev.gov.br/gpa', '_system' ,'location=yes'); return false;">GERID</a>
-				</div>
-				<div class="col s6 m4 l4" style="padding-bottom:8px">
-					<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://geridmte.dataprev.gov.br/gpa/', '_system' ,'location=yes'); return false;">GERID MTE</a>
-				</div>
-				<div class="col s6 m4 l4" style="padding-bottom:8px">
-					<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('http://aplicacoes.mds.gov.br/souweb/preparePesquisaInternauta.do', '_system' ,'location=yes'); return false;">OUVIDORIA</a>
-				</div>
-				<div class="col s6 m4 l4" style="padding-bottom:8px">
-					<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://erecursos.previdencia.gov.br', '_system' ,'location=yes'); return false;">RECURSOS</a>
-				</div>
-				<div class="col s6 m4 l4" style="padding-bottom:8px">
-					<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://gestaotarefas.inss.gov.br', '_system' ,'location=yes'); return false;">GET GESTÃO</a>
-				</div>
-				<div class="col s6 m4 l4" style="padding-bottom:8px">
-					<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://sd.mte.gov.br/sd/', '_system' ,'location=yes', '_system' ,'location=yes'); return false;">SD</a>
-				</div>
-        <div class="col s6 m4 l4" style="padding-bottom:8px">
-					<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('http://escolavirtual.inss.gov.br/', '_system' ,'location=yes', '_system' ,'location=yes'); return false;">EaD</a>
-				</div>
-        <div class="col s6 m4 l4" style="padding-bottom:8px">
-					<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://correio.inss.gov.br/', '_system' ,'location=yes', '_system' ,'location=yes'); return false;">E-mail</a>
-				</div>
-
+  <div id="atalhos" style="padding-top: 8px">
+		<div class="row">
+			<div class="col s6 m4 l4" style="padding-bottom:8px">
+				<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://suporte.dataprev.gov.br/', '_system' ,'location=yes'); return false;">SDM</a>
+			</div>
+			<div class="col s6 m4 l4" style="padding-bottom:8px">
+				<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://consultas.inss.gov.br/satcentral', '_system' ,'location=yes'); return false;">SAT Central</a>
+			</div>
+			<div class="col s6 m4 l4" style="padding-bottom:8px">
+				<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://tarefas.inss.gov.br/', '_system' ,'location=yes'); return false;">GET</a>
+			</div>
+			<div class="col s6 m4 l4" style="padding-bottom:8px">
+				<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://portalcnis.inss.gov.br', '_system' ,'location=yes'); return false;">CNIS</a>
+			</div>
+			<div class="col s6 m4 l4" style="padding-bottom:8px">
+				<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://geridinss.dataprev.gov.br/gpa', '_system' ,'location=yes'); return false;">GERID</a>
+			</div>
+			<div class="col s6 m4 l4" style="padding-bottom:8px">
+				<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://geridmte.dataprev.gov.br/gpa/', '_system' ,'location=yes'); return false;">GERID MTE</a>
+			</div>
+			<div class="col s6 m4 l4" style="padding-bottom:8px">
+				<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('http://aplicacoes.mds.gov.br/souweb/preparePesquisaInternauta.do', '_system' ,'location=yes'); return false;">OUVIDORIA</a>
+			</div>
+			<div class="col s6 m4 l4" style="padding-bottom:8px">
+				<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://erecursos.previdencia.gov.br', '_system' ,'location=yes'); return false;">RECURSOS</a>
+			</div>
+			<div class="col s6 m4 l4" style="padding-bottom:8px">
+				<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://gestaotarefas.inss.gov.br', '_system' ,'location=yes'); return false;">GET GESTÃO</a>
+			</div>
+			<div class="col s6 m4 l4" style="padding-bottom:8px">
+				<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://sd.mte.gov.br/sd/', '_system' ,'location=yes', '_system' ,'location=yes'); return false;">SD</a>
+			</div>
+      <div class="col s6 m4 l4" style="padding-bottom:8px">
+				<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('http://escolavirtual.inss.gov.br/', '_system' ,'location=yes', '_system' ,'location=yes'); return false;">EaD</a>
+			</div>
+      <div class="col s6 m4 l4" style="padding-bottom:8px">
+				<a style="width: 100%" class="btn-large waves-effect waves-light btn" href="#" onclick="window.open('https://correio.inss.gov.br/', '_system' ,'location=yes', '_system' ,'location=yes'); return false;">E-mail</a>
 			</div>
 		</div>
+  </div>
+  <div id="divCalculadora" style="padding-top: 30px; display:none;">
+    <div class="row">
+      <form id="form_data" class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="first_date" type="text" class="datepicker">
+            <label for="first_date">Data Incial</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="second_date" type="text" class="datepicker">
+            <label for="second_date">Data Final</label>
+          </div>
+        </div>
+      </form>
+      <div class="col s12 center-align">
+        <h5 id="resultadoCalculo"></h5><br>
+      </div>
+      <div class="col s12 center-align">
+        <a class="btn" onclick="limparData()">Limpar</a>
+        <a class="btn" onclick="calcularIntervaloData()">Calcular</a>
+      </div>
+      <div class="col s12">
+        <p><a href="#" onclick="mostraAtalhos()"><i class="fas fa-chevron-left"></i> Voltar</a></p>
+      </div>
+  </div>
   </div>
 		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/moment-precise-range.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
