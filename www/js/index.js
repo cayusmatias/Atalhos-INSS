@@ -59,7 +59,7 @@ var app = {
 //função que chama a calculadora
 function mostraCalculadora(){
   $('.sidenav').sidenav('close');
-  $('#atalhos').hide();
+  $('.appbody').hide();
   $('#divCalculadora').show();
   limparData();
 }
@@ -67,12 +67,65 @@ function mostraCalculadora(){
 //função que chama a calculadora
 function mostraAtalhos(){
   $('.sidenav').sidenav('close');
+  $('.appbody').hide();
   $('#atalhos').show();
-  $('#divCalculadora').hide();
   limparData();
 }
 
-//chama datapicker
+//função que chama a busca servidor
+function buscaServidor(){
+  $('.sidenav').sidenav('close');
+  $('.appbody').hide();
+  $('#busca_servidor').show();
+  limparData();
+}
+
+// função ajax para buscar servidor e apresentar na div busca_servidor
+function ajaxServidor() {
+  var data = "[]";
+  var nome = '';
+  var lotacao = '';
+  var nome_cpf = $('#nome_cpf').val();
+  if ($.isNumeric(nome_cpf)){
+    var tipo_busca = 'cpf';
+  }else{
+    var tipo_busca = 'nome';
+  }
+  $.ajax({
+    url: 'http://www.transparencia.gov.br/api-de-dados/servidores?' + tipo_busca + '=' + nome_cpf + '&orgaoServidorLotacao=57202&pagina=1',
+    type: 'GET',
+    dataType: 'json',
+    timeout: 300000, //30 second timeout
+    beforeSend: function () {
+      $('.appbody').hide();
+      $('#carregando').show();
+    },
+    success: function(data, textStatus, xhr) {
+      $('#carregando').hide();
+      $('#busca_servidor').show();
+        if (!! data[0]){
+          var resultado = data.length;
+          for (i = 0; i < resultado; i++) {
+            nome += "<div class='col s12 m6'><div class='card-panel'>" + data[i].fichasCargoEfetivo[0]['nome'] + " <br> " + data[i].fichasCargoEfetivo[0]['uorgExercicio'] + "</div></div>";
+            $( '#servidor_encontrado' ).html( nome );
+          }
+        }else{
+          var html_sucesso = "<p style:'text-align: justify;'><i class='fas fa-exclamation-triangle'> Servidor(a) não localizado.</p>";
+           M.toast({html: html_sucesso, classes: 'amber darken-3', displayLength:'10000'}); // toast do materialize
+        }
+      },
+    error: function(xhr, textStatus, errorThrown) {
+        var html_erro = "<p style:'text-align: justify;'><i class='fas fa-exclamation-triangle'></i> \
+                        O servidor de dados não respondeu a requisição, \
+                        verifique os dados inseridos e tente novamente.</p>";
+        M.toast({html: html_erro, classes: 'red darken-3', displayLength:'10000'});
+        $('#carregando').hide();
+        $('#busca_servidor').show();
+      }
+    });
+  };
+
+//chama datapicker da calculadora de tempo
 $(document).ready(function(){
     $('.datepicker').datepicker({
     i18n: {
