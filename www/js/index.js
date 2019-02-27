@@ -106,12 +106,18 @@ function ajaxServidor() {
         if (!! data[0]){
           var resultado = data.length;
           for (i = 0; i < resultado; i++) {
-            nome += "<div class='col s12 m6'><div class='card-panel'>" + data[i].fichasCargoEfetivo[0]['nome'] + " <br> " + data[i].fichasCargoEfetivo[0]['uorgExercicio'] + "</div></div>";
+            nome += "<br><div class='col s12 m6'><div class='card-panel'>" +
+                    "Nome: " + data[i].fichasCargoEfetivo[0]['nome'] + " <br> " +
+                    "CPF: " + data[i].fichasCargoEfetivo[0]['cpfDescaracterizado'] + " <br> " +
+                    "Matrícula: " + data[i].fichasCargoEfetivo[0]['matriculaDescaracterizada'] + " <br> " +
+                    "Lotação: " + data[i].fichasCargoEfetivo[0]['uorgLotacao'] + " <br> " +
+                    "Exercício: " + data[i].fichasCargoEfetivo[0]['uorgExercicio'] +
+                    "</div></div>";
             $( '#servidor_encontrado' ).html( nome );
           }
         }else{
           var html_sucesso = "<p style:'text-align: justify;'><i class='fas fa-exclamation-triangle'> Servidor(a) não localizado.</p>";
-           M.toast({html: html_sucesso, classes: 'amber darken-3', displayLength:'10000'}); // toast do materialize
+          M.toast({html: html_sucesso, classes: 'amber darken-3', displayLength:'10000'}); // toast do materialize
         }
       },
     error: function(xhr, textStatus, errorThrown) {
